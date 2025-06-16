@@ -1,2 +1,3 @@
 # bookbot
-Gives a count of all the letters in a book
+
+BookBot is my first [Boot.dev](https://www.boot.dev) project!
