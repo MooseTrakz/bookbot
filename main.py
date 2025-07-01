@@ -1,21 +1,31 @@
 
-from stats import get_num_words, get_num_char_sym
+from stats import get_num_words, get_num_char_sym, chars_dict_to_sorted_list
+import sys 
 
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
     num_words = get_num_words(text)
-    print ("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
-    print ("----------- Word Count ----------")
-    print (f"Found {num_words} total words")
-    print ("--------- Character Count -------")
-    print (get_num_char_sym(text))
+    chars_dict = get_num_char_sym(text)
+    chars_sorted_list = chars_dict_to_sorted_list(chars_dict)
+    print_report(book_path, num_words, chars_sorted_list)
 
 
 def get_book_text(path):
     with open(path) as f:
         return f.read()
 
+def print_report(book_path, num_words, char_sorted_list):
+    print ("============ BOOKBOT ============")
+    print("Analyzing book found at {book_path}...")
+    print ("----------- Word Count ----------")
+    print (f"Found {num_words} total words")
+    print ("--------- Character Count -------")
+    for item in char_sorted_list:
+        if not item["char"].isalpha():
+            continue
+        print(f"{item["char"]}: {item["num"]}")
+
+    print("============= END ===============")
 
 main()

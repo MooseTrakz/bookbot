@@ -13,5 +13,13 @@ def get_num_char_sym(text):
             char_count[char] = 1
     return char_count
 
-def sorted_dict(char_count):
-    char_count.sort()
+def sort_on(d):
+    return d["num"]
+
+def chars_dict_to_sorted_list(num_chars_dict):
+    sorted_list = []
+    for ch in num_chars_dict:
+        sorted_list.append({"char": ch, "num": num_chars_dict[ch]})
+    sorted_list.sort(reverse=True, key=sort_on)
+    return sorted_list
+
